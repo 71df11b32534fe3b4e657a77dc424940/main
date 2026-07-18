@@ -4487,9 +4487,9 @@ function Toggle.New(Value, Icon, IconSize, Parent, Callback, NewElement, Config)
 			Cols = 10,
 		},
 	}
-	function Toggle:GetGlassFrame(T): (string, Vector2, Vector2)
+	function Toggle:GetGlassFrame(T)
 		local S = Toggle.GlassSpritesheet
-		local Frame: number
+		local Frame
 		if T <= 0.4 then
 			Frame = math.floor((T / 0.4) * (S.Total - 1))
 		elseif T < 0.6 then
@@ -10609,15 +10609,7 @@ return function(Config)
 		end)
 		return Button
 	end
-	function Window.Topbar:Button(ButtonConfig: {
-		Name: string,
-		Icon: string,
-		Callback: any,
-		LayoutOrder: number,
-		IconThemed: boolean,
-		Color: Color3,
-		IconSize: number,
-	})
+	function Window.Topbar:Button(ButtonConfig)
 		return Window:CreateTopbarButton(
 			ButtonConfig.Name,
 			ButtonConfig.Icon,
