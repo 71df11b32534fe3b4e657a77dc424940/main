@@ -1,17 +1,3 @@
---[[
-     _      ___         ____  ______
-    | | /| / (_)__  ___/ / / / /  _/
-    | |/ |/ / / _ \/ _  / /_/ // /  
-    |__/|__/_/_//_/\_,_/\____/___/
-    
-    WindUI - Roblox UI Library
-    Source: https://github.com/Footagesus/WindUI
-    License: MIT
-    
-    Modified build: Localization removed, Acrylic removed,
-    Colorpicker removed, OpenButton circle-only, Input PillMode added.
-]]
-
 local __modules = {}
 local __cache = {}
 
@@ -34,7 +20,6 @@ end
 __modules["PackageStub"] = function()
 	return '{"version":"1.6.65"}'
 end
-
 
 __modules["DynamicShape"] = function()
 local Creator
@@ -11436,7 +11421,7 @@ return function(Config)
 		local CurrentSearchBar
 		local SearchLabel = CreateLabel("Search", "search", Window.UIElements.SideBarContainer, true)
 		SearchLabel.Size = UDim2.new(1, -Window.UIPadding / 2, 0, 39)
-		SearchLabel.Position = UDim2.new(0, Window.UIPadding / 2, 0,
+		SearchLabel.Position = UDim2.new(0, Window.UIPadding / 2, 0, Window.UIPadding / 2)
 		Creator.AddSignal(SearchLabel.MouseButton1Click, function()
 			if IsOpen then
 				return
