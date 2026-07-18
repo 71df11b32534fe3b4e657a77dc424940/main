@@ -459,7 +459,7 @@ end
 __modules["IconsModule"] = function()
 local cloneref = (cloneref or clonereference or function(instance) return instance end)
 local _iconsOk, _iconsResult = pcall(function()
-    return cloneref(game:GetService("ReplicatedStorage"):WaitForChild("GetIcons", 10):InvokeServer())
+	return cloneref(game:GetService("ReplicatedStorage"):WaitForChild("GetIcons", 10):InvokeServer())
 end)
 local IconModule = (_iconsOk and type(_iconsResult) == "table") and _iconsResult or { Icons = {}, IconsType = "lucide" }
 local function parseIconString(iconString)
@@ -660,11 +660,16 @@ local Icons
 if RunService:IsStudio() or not writefile then
 	Icons = __require("SearchIcons")
 else
-	Icons = loadstring(
-		game.HttpGet and game:HttpGet(IconsURL) or HttpService:GetAsync(IconsURL)
-	)()
+	local _iconOk, _iconResult = pcall(function()
+		return loadstring(
+			game.HttpGet and game:HttpGet(IconsURL) or HttpService:GetAsync(IconsURL)
+		)()
+	end)
+	Icons = (_iconOk and type(_iconResult) == "table") and _iconResult or __require("SearchIcons")
 end
-Icons.SetIconsType("lucide")
+if Icons and Icons.SetIconsType then
+	Icons.SetIconsType("lucide")
+end
 local WindUI
 local Creator
 Creator = {
