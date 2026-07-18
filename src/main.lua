@@ -4487,7 +4487,7 @@ function Toggle.New(Value, Icon, IconSize, Parent, Callback, NewElement, Config)
 			Cols = 10,
 		},
 	}
-	function Toggle:GetGlassFrame(T: number): (string, Vector2, Vector2)
+	function Toggle:GetGlassFrame(T): (string, Vector2, Vector2)
 		local S = Toggle.GlassSpritesheet
 		local Frame: number
 		if T <= 0.4 then
@@ -9402,18 +9402,7 @@ local UserInputService = cloneref(game:GetService("UserInputService"))
 local Creator = __require("Creator")
 local New = Creator.New
 local Element = {}
-type ConfigType = {
-	Object: Instance,
-	Camera: Instance?,
-	Interactive: boolean?,
-	Height: number?,
-	Focused: boolean,
-	Window: any,
-	WindUI: any,
-	Tab: any,
-	Parent: Instance,
-}
-function Element:New(Config: ConfigType)
+function Element:New(Config)
 	local Viewport = {
 		__type = "Viewport",
 		Object = Config.Object,
