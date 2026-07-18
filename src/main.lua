@@ -1,3 +1,17 @@
+--[[
+     _      ___         ____  ______
+    | | /| / (_)__  ___/ / / / /  _/
+    | |/ |/ / / _ \/ _  / /_/ // /  
+    |__/|__/_/_//_/\_,_/\____/___/
+    
+    WindUI - Roblox UI Library
+    Source: https://github.com/Footagesus/WindUI
+    License: MIT
+    
+    Modified build: Localization removed, Acrylic removed,
+    Colorpicker removed, OpenButton circle-only, Input PillMode added.
+]]
+
 local __modules = {}
 local __cache = {}
 
@@ -20,6 +34,7 @@ end
 __modules["PackageStub"] = function()
 	return '{"version":"1.6.65"}'
 end
+
 
 __modules["DynamicShape"] = function()
 local Creator
@@ -443,7 +458,10 @@ end
 
 __modules["IconsModule"] = function()
 local cloneref = (cloneref or clonereference or function(instance) return instance end)
-local IconModule = cloneref(game:GetService("ReplicatedStorage"):WaitForChild("GetIcons", 99999):InvokeServer())
+local _iconsOk, _iconsResult = pcall(function()
+    return cloneref(game:GetService("ReplicatedStorage"):WaitForChild("GetIcons", 10):InvokeServer())
+end)
+local IconModule = (_iconsOk and type(_iconsResult) == "table") and _iconsResult or { Icons = {}, IconsType = "lucide" }
 local function parseIconString(iconString)
     if type(iconString) == "string" then
         local splitIndex = iconString:find(":")
@@ -11421,7 +11439,7 @@ return function(Config)
 		local CurrentSearchBar
 		local SearchLabel = CreateLabel("Search", "search", Window.UIElements.SideBarContainer, true)
 		SearchLabel.Size = UDim2.new(1, -Window.UIPadding / 2, 0, 39)
-		SearchLabel.Position = UDim2.new(0, Window.UIPadding / 2, 0, Window.UIPadding / 2)
+		SearchLabel.Position = UDim2.new(0, Window.UIPadding / 2, 0,
 		Creator.AddSignal(SearchLabel.MouseButton1Click, function()
 			if IsOpen then
 				return
